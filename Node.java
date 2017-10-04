@@ -9,8 +9,6 @@ public class Node {
 	public Node(String n)	{
 		this.my_name = n;
 		current_distance = Integer.MAX_VALUE;
-	//	this.neibours = nb;
-	//	this.weights_to = wt;
 	}
 	
 	public boolean addNeibour(Node n, int wt)	{

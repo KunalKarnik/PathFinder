@@ -61,10 +61,8 @@ public class PathFinderTest {
 		//see if Dijkstraw's algorithm works
 		
 		shortestPathFinder ob = new shortestPathFinder(start, end);
-		
-		ob.dijkstras();
-		
-		assertEquals(1,1);
+		String test = ob.dijkstras();
+		assertEquals(test ,"start --> a --> d --> i --> e --> j --> end --> ");
 	}
 
 }
