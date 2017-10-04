@@ -10,19 +10,19 @@ public class PathFinderTest {
 		//Create a test map <hand-drawn picture included>
 		
 		//Create the junctions (nodes)
-		Node start = new Node("start");
-		Node a = new Node("a");
-		Node b = new Node("b");
-		Node c = new Node("c");
-		Node d = new Node("d");
-		Node e = new Node("e");
-		Node f = new Node("f");
-		Node g = new Node("g");
-		Node h = new Node("h");
-		Node i = new Node("i");
-		Node j = new Node("j");
-		Node k = new Node("k");
-		Node end = new Node("end");
+		Node start = new Node("start",0);
+		Node a = new Node("a",9);
+		Node b = new Node("b",7);
+		Node c = new Node("c",8);
+		Node d = new Node("d",8);
+		Node e = new Node("e",6);
+		Node f = new Node("f",4);
+		Node g = new Node("g",6);
+		Node h = new Node("h",4);
+		Node i = new Node("i",6);
+		Node j = new Node("j",3);
+		Node k = new Node("k",5);
+		Node end = new Node("end",0);
 		
 		
 		//Create the road network (graph)

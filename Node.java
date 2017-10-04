@@ -4,10 +4,15 @@ public class Node {
 	final String my_name;
 	final List<Node> neibours = new ArrayList<Node>();
 	final List<Integer> weights_to = new ArrayList<Integer>();
+	final long distance_to_target;
+	
+	//Don't like it this way, but this is the easiest way 
+	// with the comparator working off of this value.
 	long current_distance;
 	
-	public Node(String n)	{
+	public Node(String n, long l)	{
 		this.my_name = n;
+		distance_to_target = l;
 		current_distance = Integer.MAX_VALUE;
 	}
 	
