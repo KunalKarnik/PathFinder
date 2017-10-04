@@ -4,9 +4,11 @@ public class Node {
 	final String my_name;
 	final List<Node> neibours = new ArrayList<Node>();
 	final List<Integer> weights_to = new ArrayList<Integer>();
+	long current_distance;
 	
 	public Node(String n)	{
 		this.my_name = n;
+		current_distance = Integer.MAX_VALUE;
 	//	this.neibours = nb;
 	//	this.weights_to = wt;
 	}
@@ -19,5 +21,9 @@ public class Node {
 			return true;
 		}
 		else {return false;}
+	}
+	
+	public void setDistance(long l)	{
+		this.current_distance = l;
 	}
 }

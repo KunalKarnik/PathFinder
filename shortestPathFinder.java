@@ -1,52 +1,59 @@
 import java.util.*;
-import java.util.Map.Entry;
+//import java.util.Map.Entry;
 
 public class shortestPathFinder {
 	
+	final int limit = 11;
 	final Node start;
 	final Node end;
-	SortedMap<Long, Node> stack;
 	HashMap<Node, String > visited;
+	HashMap<Node, Long> distance;
+	PriorityQueue<Node> stack;
 	
 	public shortestPathFinder(Node start, Node end)	{
 		this.start = start;
 		this.end = end;
-		stack = new TreeMap<Long, Node>();
-		// Two places might have the same name, thus the key is the Node itself
+		stack = new PriorityQueue<Node>(limit, new Comparator<Node>() {
+		    public int compare(Node n1, Node n2) {
+		    	return n1.current_distance > n2.current_distance ? 1:-1;
+		    }
+		});
+		
 		visited = new HashMap<Node, String>();
 	}
 	
 	
 	public void dijkstras()	{
 		
-		stack.put(0L,start);
+		start.setDistance(0L);
+		stack.add(start);
 		
 		while(!stack.isEmpty())	{
-			run(stack.get(stack.firstKey()));
+			dijkstrasHelper(stack.poll());
+			
+			if(stack.peek().my_name=="end")	{
+				System.out.println("Destination Reached");
+				break;
+			}
 		}
 	}
 	
 	
-	public void run(Node n)	{
+	public void dijkstrasHelper(Node n)	{
 		for(int i = 0; i < n.neibours.size(); i++)	{
 			if(!visited.containsKey(n.neibours.get(i)))	{
-				stack.put((long) Integer.MAX_VALUE, n.neibours.get(i));
-				
+				if((n.current_distance + n.weights_to.get(i)) < n.neibours.get(i).current_distance)
+					n.neibours.get(i).setDistance(n.current_distance + n.weights_to.get(i));
+				stack.add(n.neibours.get(i));
+				System.out.println("added -> " + n.neibours.get(i).my_name);
 			}
+			
 		}
-		visited.put(n, n.my_name);
-		stack.remove(stack.firstKey(),n);
-
-		for(Entry<Long, Node> entry : stack.entrySet()) {
-			  System.out.print(entry.getValue().my_name);
-			}
-		System.out.println(stack.toString());
 		
+		System.out.println(n.my_name + " " + n.current_distance);
+		
+		visited.put(n, n.my_name);
 	}
-	
-	
-	
-	
 
 	public static void main(String[] args) {
 		
